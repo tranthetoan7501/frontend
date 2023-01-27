@@ -18,7 +18,7 @@ function Login() {
       await login(emailInputRef.current.value, passwordInputRef.current.value);
       navigate('/');
     } catch (err) {
-      notify('Login fail! Please check your login info');
+      notify('Login fail! Please check your info');
     }
   };
   const registerOnclick = () => {
