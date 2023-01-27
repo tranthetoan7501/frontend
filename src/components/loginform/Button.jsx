@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export default function Button({ content }) {
-  return <StyledButton>{content}</StyledButton>;
+export default function Button({ onClick,content }) {
+  return <StyledButton onClick={onClick}>{content}</StyledButton>;
 }
 
 const StyledButton = styled.button`
@@ -9,7 +9,7 @@ const StyledButton = styled.button`
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   width: 65%;
-  height: 3rem;
+  height: 3rem; 
   border: none;
   color: white;
   border-radius: 2rem;

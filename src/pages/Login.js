@@ -1,11 +1,30 @@
 import styled from 'styled-components';
+import { useRef } from 'react';
 import Button from '../components/loginform/Button';
 import Icon from '../components/loginform/Icon';
 import Input from '../components/loginform/Input';
+import { useContext } from 'react';
 import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { AuthContext } from '../context/authContext';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const backgroundUrl = 'Br1.jpg';
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+  const { login, notify } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const submitHandler = async () => {
+    try {
+      await login(emailInputRef.current.value, passwordInputRef.current.value);
+      navigate('/');
+    } catch (err) {
+      notify('Login fail! Please check your login info');
+    }
+  };
+  const registerOnclick = () => {
+    navigate('/register');
+  };
+  const backgroundUrl = 'Br6.jpg';
   const FacebookBackground =
     'linear-gradient(to right, #0546A0 0%, #0546A0 40%, #663FB6 100%)';
   const InstagramBackground =
@@ -17,13 +36,23 @@ function Login() {
       <MainContainer>
         <WelcomeText>Welcome</WelcomeText>
         <InputContainer>
-          <Input type='text' placeholder='Email' />
-          <Input type='password' placeholder='Password' />
+          <Input
+            type='email'
+            id='email'
+            placeholder='Email'
+            val={emailInputRef}
+          />
+          <Input
+            type='password'
+            id='password'
+            placeholder='Password'
+            val={passwordInputRef}
+          />
         </InputContainer>
         <ButtonContainer>
-          <Button content='Sign Up' />
+          <Button onClick={submitHandler} content='Login' />
         </ButtonContainer>
-        <LoginWith>OR LOGIN WITH</LoginWith>
+        <LoginWith onClick={registerOnclick}>OR REGISTER</LoginWith>
         <HorizontalRule />
         <IconsContainer>
           <Icon color={FacebookBackground}>
@@ -123,7 +152,7 @@ const ButtonContainer = styled.div`
   justify-content: center;
 `;
 
-const LoginWith = styled.h5`
+const LoginWith = styled.a`
   cursor: pointer;
 `;
 

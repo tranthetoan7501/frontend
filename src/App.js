@@ -6,15 +6,19 @@ import Login from './pages/Login';
 import Layout from './components/Layout';
 import './App.css';
 import Home from './pages/Home';
+import ProtectedRoutes from './protectRoute';
 
 function App() {
   return (
     <Routes>
-      <Route path='/' element={<Layout />}>
-        <Route path='' element={<Home />} />
-        <Route path='post/:id' element={<Single />} />
-        <Route path='write' element={<Write />} />
+      <Route element={<ProtectedRoutes />}>
+        <Route path='/' element={<Layout />}>
+          <Route path='' element={<Home />} />
+          <Route path='post/:id' element={<Single />} />
+          <Route path='write' element={<Write />} />
+        </Route>
       </Route>
+
       <Route path='/register' element={<Register />} />
       <Route path='/login' element={<Login />} />
     </Routes>
