@@ -26,9 +26,9 @@ export default function Posts() {
   },[]);
   return (
     <div className="posts">
-      {items.map((item)=>{
+      {items?items.map((item)=>{
         return <Post key={item._id} id={item._id} title={item.title} content={item.description} img={item.image}/>
-      })}
+      }):<h1>Loading...</h1>}
     </div>
   );
 }
