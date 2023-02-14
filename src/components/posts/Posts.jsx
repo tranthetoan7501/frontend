@@ -15,6 +15,7 @@ export default function Posts() {
     const fetchData = async () => {
       try {
         const {data} = await getPost();
+        console.log(data.data);
         setItems(data.data);
       } catch (err) {
         notify(err.response.data.error);
