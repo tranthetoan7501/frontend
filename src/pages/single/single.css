@@ -1,0 +1,11 @@
+.single{
+    display: flex;
+    padding: 100px 25% 100px 23%;
+}
+
+@media (max-width: 59em) {
+    .single {
+            display: flex;
+            padding: 100px 2% 100px 0%;
+        }
+}

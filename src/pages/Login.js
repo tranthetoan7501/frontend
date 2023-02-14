@@ -4,8 +4,9 @@ import Button from '../components/loginform/Button';
 import Icon from '../components/loginform/Icon';
 import Input from '../components/loginform/Input';
 import { useContext } from 'react';
-import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
 import { AuthContext } from '../context/authContext';
+import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
+
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
@@ -24,7 +25,7 @@ function Login() {
   const registerOnclick = () => {
     navigate('/register');
   };
-  const backgroundUrl = 'Br6.jpg';
+  const backgroundUrl = 'Br8.png';
   const FacebookBackground =
     'linear-gradient(to right, #0546A0 0%, #0546A0 40%, #663FB6 100%)';
   const InstagramBackground =

@@ -10,16 +10,18 @@ export const AuthContexProvider = ({ children }) => {
   );
 
   const login = async (email, password) => {
-    const res = await axios.post('http://localhost:5000/api/auth/Login', {
-      email: email,
-      password: password,
-    });
-    //console.log(res);
+    const res = await axios.post(
+      `${process.env.REACT_APP_API_URL}/auth/Login`,
+      {
+        email: email,
+        password: password,
+      }
+    );
     setCurrentUser(res.data);
   };
 
   const logout = async (inputs) => {
-    await axios.post('/auth/logout');
+    //await axios.post('/auth/logout');
     setCurrentUser(null);
   };
   const notify = (content) => {
@@ -27,7 +29,12 @@ export const AuthContexProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(currentUser));
+    //console.log(currentUser);
+    if (currentUser && currentUser.data) {
+      localStorage.setItem('user', JSON.stringify(currentUser.data.user));
+      localStorage.setItem('token', JSON.stringify(currentUser.data.token));
+    }
+
     //let user = JSON.parse(localStorage.getItem('user'));
   }, [currentUser]);
 

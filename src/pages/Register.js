@@ -16,7 +16,7 @@ const Register = () => {
   const navigate = useNavigate();
   const { notify } = useContext(AuthContext);
 
-  const backgroundUrl = 'Br6.jpg';
+  const backgroundUrl = 'Br8.png';
   const FacebookBackground =
     'linear-gradient(to right, #0546A0 0%, #0546A0 40%, #663FB6 100%)';
   const InstagramBackground =
@@ -35,6 +35,7 @@ const Register = () => {
         email: emailInputRef.current.value,
         password: passwordInputRef.current.value,
       });
+      notify('Check your verify mail !!!');
       navigate('/login');
     } catch (err) {
       console.log(err.response.data.error);

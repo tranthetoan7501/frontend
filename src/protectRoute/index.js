@@ -1,7 +1,12 @@
 import { Navigate, Outlet } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../context/authContext';
 
 const useAuth = () => {
-  var userInfo = JSON.parse(localStorage.getItem('user')) || null;
+  const { currentUser } = useContext(AuthContext);
+  //console.log(currentUser);
+  var userInfo =
+    JSON.parse(localStorage.getItem('user')) || currentUser || null;
   return userInfo;
 };
 
